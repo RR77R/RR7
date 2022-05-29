@@ -1,0 +1,68 @@
+{
+  "name": "For Telegram ",
+  "description": "hmm.",
+  "logo": " ",
+  "keywords": [
+    "telegram",
+    "plugin",
+    "telethon",
+    "modular",
+    "productivity"
+  ],
+  "repository": "https://github.com/RR77R/RR7/",
+  "env": {
+    "ENV": {
+      "description": "لا تغيرها.",
+      "value": "ANYTHING"
+    },
+    "HANDLER": {
+      "description": "البيرفكس لا تغيرها",
+      "value": "."
+    },
+    "APP_ID": {
+      "description": "هنا ضع الايبب ايدي الخاص بك",
+      "value": ""
+    },
+    "API_HASH": {
+      "description": "هنا ضع الايبي هاش الخاص بك",
+      "value": ""
+    },
+    "HELLBOT_SESSION": {
+      "description": "هنا ضع كود سيشن تيليثون (كود تيرمكس) ",
+      "value": ""
+    },
+    "HEROKU_API_KEY": {
+      "description": "هنا ضع ايبي كي هيروكو.",
+      "value": ""
+    },
+    "HEROKU_APP_NAME": {
+      "description": "هنا ضع اسم التطبيق الخاص ىك.",
+      "value": ""
+    },
+    "BOT_TOKEN": {
+      "description": "اصنع بوت من بوتفاذر وهنا ضع التوكن",
+      "value": ""
+    }
+  },
+  "addons": [{
+    "plan": "heroku-postgresql",
+    "options": {
+      "version": "12"
+    }
+  }],
+  "buildpacks": [{
+    "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+  },{
+    "url":"https://github.com/heroku/heroku-buildpack-google-chrome"
+  },{
+    "url":"https://github.com/heroku/heroku-buildpack-chromedriver"
+  },{
+    "url": "https://github.com/opendoor-labs/heroku-buildpack-p7zip"
+  },{
+    "url": "https://github.com/heroku/heroku-buildpack-apt.git"
+  },{
+    "url": "https://github.com/chrismytton/heroku-buildpack-jq"
+  },{
+    "url": "heroku/python"
+  }]
+}

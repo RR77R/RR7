@@ -1,0 +1,61 @@
+#!/bin/bash
+
+
+_python_() {
+    python3${pVer%.*} -c "$1"
+}
+
+_JMTHON_MAIN() {
+    $(_python_ 'from git import Repo
+import sys
+
+_UPSTREAM_ = "https://github.com/RR77R/RR7"
+_BRANCH_ = "master"
+
+repo = Repo.init()
+origin = repo.create_remote("temponame", _UPSTREAM_)
+origin.fetch()
+repo.create_head(_BRANCH_, origin.refs[_BRANCH_])
+repo.heads[_BRANCH_].checkout(True) ')
+}
+
+_jmthon_repo () {
+    local hrepo
+    hrepo=`echo "aHR0cHM6Ly9naXRodWIuY29tL1JSNzdSL2ptdGhvbg=" | base64 -d`
+    echo "$rlink"
+}
+
+_jmthon_zip () {
+    echo "aHR0cHM6Ly9naXRodWIuY29tL1JSNzdSL2ptdGhvbi9hcmNoaXZlL21hc3Rlci56aXA" | base64 -d
+}
+
+_JMTHON_PLUG() {
+    local hrepo=$(_jmthon_repo)
+    $(_python_ 'from git import Repo
+import sys
+_UPSTREAM_ = "'$hrepo'"
+_BRANCH_ = "master"
+repo = Repo.init()
+origin = repo.create_remote("temponame", _UPSTREAM_)
+origin.fetch()
+repo.create_head(_BRANCH_, origin.refs[_BRANCH_])
+repo.heads[_BRANCH_].checkout(True) ')
+}
+
+_starter () {
+    local jmthonpath
+    jmthonpath="jmthon.zip"
+    echo "••• يتم تحميل الملفات •••"
+    wget -q $(_jmthon_zip) -O "$jmthonpath"
+    JMTHONPATH=$(zipinfo -1 "$jmthonpath" | grep -v "/.");
+    unzip -qq "$jmthonpath"
+    rm -rf "$jmthonpath"
+    # _JMTHON_MAIN
+    cd $JMTHONPATH
+    # _JMTHON_PLUG
+    python3 ../setup/updater.py ../requirements.txt requirements.txt
+    echo "••• يتم بدأ جمثون •••"
+    python3 -m jmthon
+}
+
+_starter
